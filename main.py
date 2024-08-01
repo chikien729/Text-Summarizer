@@ -1,5 +1,6 @@
 from textSum.pipeline.stage_01_data_ingestion import DataIngestionPipeline
 from textSum.pipeline.stage_02_data_validation import DataValidationPipeline
+from textSum.pipeline.stage_03_data_transformation import DataTransformationPipeline
 from textSum.logging import logger
 
 STAGE_NAME = "DATA INGESTION"
@@ -20,6 +21,19 @@ try:
     logger.info(f">>>>>>>> stage {STAGE_NAME} started >>>>>>>>")
     data_validation = DataValidationPipeline()
     data_validation.main()
+    logger.info(f"<<<<<<<< stage {STAGE_NAME} finished <<<<<<<<\n===============================")
+except Exception as e: 
+    logger.exception(e)
+    raise e
+
+
+
+STAGE_NAME = "DATA TRANSFORMATION"
+
+try: 
+    logger.info(f">>>>>>>> stage {STAGE_NAME} started >>>>>>>>")
+    data_transformation = DataTransformationPipeline()
+    data_transformation.main()
     logger.info(f"<<<<<<<< stage {STAGE_NAME} finished <<<<<<<<\n===============================")
 except Exception as e: 
     logger.exception(e)
